@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="zzr-scheduler-admin" />
+        <module name="zzr-scheduler-bi" />
+        <module name="zzrbiweb" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="zzr-scheduler" target="1.5" />
+      <module name="zzr-scheduler-admin" target="1.7" />
+      <module name="zzr-scheduler-bi" target="1.5" />
+      <module name="zzrbi" target="1.5" />
+      <module name="zzrbiweb" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

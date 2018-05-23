@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+.file-upload-panel{
+	width:100%;
+	position: relative;
+    min-height: 1px;
+    float: left;
+}
+
+.fair-upload-panel {
+	text-align: center;
+	padding-top: 15px;
+}
+
+.fair-title {
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.fair-title input{
+	width: 100%;
+}
+
+.fair-button{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.fair-button a{
+	width: 80px;
+    line-height: 18px;
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+.fair-button a input{
+	opacity: 0;
+    filter: alpha(opacity = 0);
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.fair-preview{
+	width:100%;
+	padding:5px;
+	box-shadow: 1px 1px 5px 0 #a2958a;
+}
+
+.upload-alert{
+	display:none;
+	position: absolute;
+	width:100%;
+	z-index: 10;
+	top:0;
+	left:0;
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="dataMasterDruidDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
+
+        <property name="url" value="${jdbc.mysql.master.connection.url}"/>
+        <property name="username" value="${jdbc.mysql.master.connection.username}"/>
+        <property name="password" value="${jdbc.mysql.master.connection.password}"/>
+
+        <property name="filters" value="${jdbc.mysql.master.connection.filters}"/>
+
+        <property name="maxActive" value="${jdbc.mysql.master.connection.maxActive}"/>
+        <property name="initialSize" value="${jdbc.mysql.master.connection.initialSize}"/>
+        <property name="maxWait" value="${jdbc.mysql.master.connection.maxWait}"/>
+        <property name="minIdle" value="${jdbc.mysql.master.connection.minIdle}"/>
+
+        <property name="timeBetweenEvictionRunsMillis"
+                  value="${jdbc.mysql.master.connection.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis"
+                  value="${jdbc.mysql.master.connection.minEvictableIdleTimeMillis}"/>
+
+        <property name="validationQuery" value="${jdbc.mysql.master.connection.validationQuery}"/>
+        <property name="testWhileIdle" value="${jdbc.mysql.master.connection.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${jdbc.mysql.master.connection.testOnBorrow}"/>
+        <property name="testOnReturn" value="${jdbc.mysql.master.connection.testOnReturn}"/>
+
+        <property name="poolPreparedStatements" value="${jdbc.mysql.master.connection.poolPreparedStatements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="${jdbc.mysql.master.connection.maxPoolPreparedStatementPerConnectionSize}"/>
+    </bean>
+
+    <bean id="dataSlaveDruidDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
+
+        <!--<property name="driverClassName" value="${jdbc.mysql.connection.driverClassName}"/>-->
+        <property name="url" value="${jdbc.otherDB.slave1.connection.url}"/>
+        <property name="username" value="${jdbc.otherDB.slave1.connection.username}"/>
+        <property name="password" value="${jdbc.otherDB.slave1.connection.password}"/>
+
+        <property name="filters" value="${jdbc.otherDB.slave1.connection.filters}"/>
+
+        <property name="maxActive" value="${jdbc.otherDB.slave1.connection.maxActive}"/>
+        <property name="initialSize" value="${jdbc.otherDB.slave1.connection.initialSize}"/>
+        <property name="maxWait" value="${jdbc.otherDB.slave1.connection.maxWait}"/>
+        <property name="minIdle" value="${jdbc.otherDB.slave1.connection.minIdle}"/>
+
+        <property name="timeBetweenEvictionRunsMillis"
+                  value="${jdbc.otherDB.slave1.connection.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis"
+                  value="${jdbc.otherDB.slave1.connection.minEvictableIdleTimeMillis}"/>
+
+        <property name="validationQuery" value="${jdbc.otherDB.slave1.connection.validationQuery}"/>
+        <property name="testWhileIdle" value="${jdbc.otherDB.slave1.connection.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${jdbc.otherDB.slave1.connection.testOnBorrow}"/>
+        <property name="testOnReturn" value="${jdbc.otherDB.slave1.connection.testOnReturn}"/>
+
+        <property name="poolPreparedStatements" value="${jdbc.otherDB.slave1.connection.poolPreparedStatements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="${jdbc.otherDB.slave1.connection.maxPoolPreparedStatementPerConnectionSize}"/>
+    </bean>
+
+</beans>

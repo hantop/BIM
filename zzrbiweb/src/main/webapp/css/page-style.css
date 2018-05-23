@@ -1,0 +1,280 @@
+@CHARSET "UTF-8";
+
+.btn-default {
+    background-color: #999;
+    border-color: #999;
+    color: #FFF;
+}
+.wrapper-content {
+    padding: 1px 2px 1px;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.ibox {
+    border: 1px solid #eee;
+	background-color: #ffffff;
+}
+
+.bootstrap-table{
+	background-color: #ffffff;
+	    margin-top: -50px;
+	    min-width:960px;
+}
+.bootstrap-table tbody {
+	min-width:982px;
+}
+/* input remove val start */
+.form-control-feedback {
+    background-color: #ffffff;
+    padding: 0px 12px;
+    border-left: 1px solid #E5E6E7;
+    width: auto;
+    height: 32px;
+    line-height: 32px;
+    top: 1px;
+    right: 11px;
+    color: #808080;
+    border-radius: 1px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    z-index: 2;
+}
+.form-control-feedback i{
+	padding-top:10px;
+}
+.form-control, .single-line {
+    background-color: #FFFFFF;
+}
+/* input remove val end */
+
+.checkbox label, .radio label {
+    padding-left: 0px;
+} 
+.inmodal .modal-header{
+	padding:8px 15px;
+    text-align: left;
+}
+
+.ibox-title {
+    padding:0px 15px 0px 15px;
+    line-height: 48px; 
+}
+
+.ibox-title h5 {
+    margin: 0;
+    height: 48px;
+    line-height: 48px;
+    padding-left: 15px;
+}
+
+.ibox-tools {
+    height: 48px;
+    line-height: 48px;
+}
+.ibox-tools button{
+	margin-top: 7px;
+}
+.ibox-tools a{
+	margin-top: 7px;
+}
+
+.form-valid-field{
+	color:red;
+}
+
+.form-horizontal .control-label{
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.form-horizontal .message-label {
+	padding-left:0px;
+	color:red;
+    padding-top: 9px;
+    margin-bottom: 0;
+    text-align: left;
+}
+.message-label .fa-info-circle {
+	font-size: 16px;
+	color:red;
+}
+.modal-body {
+    padding: 20px 30px 20px 30px;
+}
+.icheck-panel{
+	margin-left: -15px;
+	margin-right: -30px;
+	padding:0 15px;
+	min-height:80px;
+	max-height: 120px;
+	border:  1px dashed #e7eaec; 
+	overflow-y: auto; 
+}
+.icheck-panel li{
+	display: inline-block;
+    padding-right: 5px;
+    padding-left: 0px;
+}
+.field_error{
+    margin-left: 5px;
+    color:#cc5965;
+    display: none;
+}
+span.req_field {
+	color:red;
+}
+.modal-body .role_check{
+	width: 430px;
+    max-height: 200px;
+    margin-left: 114px;
+    border: 1px dashed #e7eaec;
+    padding-left: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+/* .modal-footer{
+	border-top:none;
+} */
+
+.fa-org{
+	color:#deb532;
+}
+.fa-dep{
+	color:#8ac4f3;
+}
+.fa-dep-user{
+	color:#46b6af;
+}
+
+.page_top_nav {
+    font-weight: 500;
+    font-size: 13px;
+}
+.page_top_nav .fa{
+    font-size: 18px;
+    vertical-align: -1px;
+}
+.page_top_nav div{
+	margin-left: 700px;
+}
+.order-group{
+	margin-bottom:15px;
+}
+.p_upperCase{
+	margin-left: -96px;
+}
+.btn-margin-r20{
+	margin-right: 20px;	
+}
+
+.hr-line-dashed {
+    margin: 10px 0;
+}
+
+table a{
+	color: #0080ff;
+    text-decoration: underline;
+}
+table a:focus,a:hover{
+	color: #4a8ecc;
+    text-decoration: underline
+}
+
+blockquote{
+	margin: 0 0 10px;
+	border-left: 5px solid #ed5565;
+}
+
+.form-readonly{
+	cursor: default;
+	background-color: transparent;
+    opacity: 1;
+    border: 0;
+}
+.form-readonly[disabled], .form-readonly[readonly], .form-readonly {
+   cursor: default;
+   background-color: transparent;
+   opacity: 1;
+   border: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.col-sm-4-5{
+	width: 14%;
+	float: left;
+	padding-right: 10px;
+    padding-left: 10px;
+}
+.col-sm-8-7{
+	width: 86%;
+	float: left;
+	padding-right: 10px;
+    padding-left: 10px;
+}
+
+.ibox-content {
+    position: relative;
+}
+
+.read-only-mask {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.1;
+    filter: alpha(opacity=40);
+    display: none;
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.allot-icheck-panel{
+	padding-left:10px;
+	padding-right:10px;
+	height:250px;
+	border: 1px solid #e5e5e5;
+	background: #f8fafb;
+}
+
+.allot-icheck-panel #allot_panel_left{
+	height:209px;
+	overflow-y: auto; 
+}
+.allot-icheck-panel #allot_panel_right{
+	height:250px;
+	overflow-y: auto; 
+}
+
+.allot-button-panel{
+	height:250px;
+	position:relative;
+	background: #fff;
+}
+
+.allot-button-panel button{
+	position:absolute;
+	top:calc((100% - 50px)/2);
+	left:calc((100% - 50px)/2);
+}
+
+.allot-model {
+    width: 720px;
+}
+
+#allot_modal .modal-dialog {
+	margin: 150px auto;
+}

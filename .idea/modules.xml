@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BIM.iml" filepath="$PROJECT_DIR$/BIM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zzr-scheduler/zzr-scheduler.iml" filepath="$PROJECT_DIR$/zzr-scheduler/zzr-scheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zzr-scheduler/zzr-scheduler-admin/zzr-scheduler-admin.iml" filepath="$PROJECT_DIR$/zzr-scheduler/zzr-scheduler-admin/zzr-scheduler-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zzr-scheduler/zzr-scheduler-bi/zzr-scheduler-bi.iml" filepath="$PROJECT_DIR$/zzr-scheduler/zzr-scheduler-bi/zzr-scheduler-bi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zzrbiweb/zzrbiweb.iml" filepath="$PROJECT_DIR$/zzrbiweb/zzrbiweb.iml" />
+    </modules>
+  </component>
+</project>

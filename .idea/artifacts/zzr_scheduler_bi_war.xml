@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zzr-scheduler-bi:war">
+    <output-path>$PROJECT_DIR$/zzr-scheduler/zzr-scheduler-bi/target</output-path>
+    <root id="archive" name="zzrbi.war">
+      <element id="artifact" artifact-name="zzr-scheduler-bi:war exploded" />
+    </root>
+  </artifact>
+</component>

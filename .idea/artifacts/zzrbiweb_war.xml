@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zzrbiweb:war">
+    <output-path>$PROJECT_DIR$/zzrbiweb/target</output-path>
+    <root id="archive" name="zzrbiweb.war">
+      <element id="artifact" artifact-name="zzrbiweb:war exploded" />
+    </root>
+  </artifact>
+</component>
