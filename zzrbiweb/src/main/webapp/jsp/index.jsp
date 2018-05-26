@@ -26,7 +26,7 @@
 	<!-- 头部信息 -->
 	<div class="header clearfix">
 		<div class="logo-header">
-			<img alt="" src="<%=request.getContextPath()%>/images/index/logo.png">
+			<%--<img alt="" src="<%=request.getContextPath()%>/images/index/logo.png">--%>
 		</div>
 		<div class="title-header">
 			<h1>数据后台管理系统<span>V 1.0</span></h1>

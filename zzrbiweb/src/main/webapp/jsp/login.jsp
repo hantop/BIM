@@ -15,7 +15,7 @@
 <body>
 	<div class="page">
 			<div class="con_bd01">
-				<div class="logo"></div>
+				<div ></div><%--class="logo"--%>
 				<div class="timer"></div>
 			</div>
 			<div class="con_bd02"></div>
