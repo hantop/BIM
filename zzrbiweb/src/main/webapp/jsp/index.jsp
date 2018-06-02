@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>数据后台管理系统</title>
+<title>现场劳务管理系统</title>
 	<!--[if lt IE 10]>
 	<meta http-equiv="refresh" content="0;URL=<%=request.getContextPath() %>/ie.shtml" />
 	<![endif]-->
@@ -29,7 +29,7 @@
 			<%--<img alt="" src="<%=request.getContextPath()%>/images/index/logo.png">--%>
 		</div>
 		<div class="title-header">
-			<h1>数据后台管理系统<span>V 1.0</span></h1>
+			<h1>现场劳务管理系统<span>V 1.0</span></h1>
 		</div>
 		<div class="user-header">
 			<div class="user-info">

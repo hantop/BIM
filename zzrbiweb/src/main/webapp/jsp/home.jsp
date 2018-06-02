@@ -34,96 +34,50 @@
 			<div class="ibox-content" style="margin-bottom: 8px">
 					<div>
 					<div class="row">
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 						</div>
-						<div class="col-sm-2">
-							<h4>注册人数/人</h4>
+						<div class="col-sm-3">
+							<h4>实时人数</h4>
 						</div>
-						<div class="col-sm-1">
-							<h4>投资人数</h4>
+						<div class="col-sm-3">
+							<h4>日累计人数</h4>
 						</div>
-						<div class="col-sm-1">
-							<h4>首投人数</h4>
+						<div class="col-sm-3">
+							<h4>在场人数</h4>
 						</div>
-						<div class="col-sm-2">
-							<h4>在投金额/元</h4>
-						</div>
-						<div class="col-sm-2">
-							<h4>交易额/元</h4>
-						</div>
-						<div class="col-sm-2">
-							<h4>净流入/元</h4>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2">
-						<label class="col-sm-4 control-label">今日</label>
-						</div>
-						<div class="col-sm-2">
-							${today.registerCount}
-						</div>
-						<div class="col-sm-1">
-							${today.investCount}
-						</div>
-						<div class="col-sm-1">
-							${today.firstInvestCount}
-						</div>
-						<div class="col-sm-2">
-							${today.availableBalance}
-						</div>
-						<div class="col-sm-2">
-							${today.investMoney}
-						</div>
-						<div class="col-sm-2">
-							${today.inflow}
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-2">
-							<label class="col-sm-4 control-label">昨日</label>
-						</div>
-						<div class="col-sm-2">
-							${yesday.registerCount}
-						</div>
-						<div class="col-sm-1">
-							${yesdayPerson.rows[0].investPerson}
-						</div>
-						<div class="col-sm-1">
-							${yesday.firstInvestCount}
-						</div>
-						<div class="col-sm-2">
-							${yesday.availableBalance}
-						</div>
-						<div class="col-sm-2">
-							${yesday.investMoney}
-						</div>
-						<div class="col-sm-2">
-							${yesday.inflow}
-						</div>
-					</div>
-						<div class="row">
-							<div class="col-sm-2">
-								<label class="control-label">平台累计</label>
-							</div>
-							<div class="col-sm-2">
-								${person.registerCount}
-							</div>
-							<div class="col-sm-1">
-								${person.firstInvestCount}
-							</div>
-							<div class="col-sm-1">
-								${person.firstInvestCount}
-							</div>
-							<div class="col-sm-2">
 
-							</div>
-							<div class="col-sm-2">
-								${balance.invest}
-							</div>
-							<div class="col-sm-2">
-								${balance.inflow}
-							</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+						<label class="col-sm-4 control-label">工人</label>
 						</div>
+						<div class="col-sm-3">
+							${today.registerCount}88
+						</div>
+						<div class="col-sm-3">
+							${today.investCount}88
+						</div>
+						<div class="col-sm-3">
+							${today.firstInvestCount}88
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label">管理员</label>
+						</div>
+						<div class="col-sm-3">
+							${yesday.registerCount}88
+						</div>
+						<div class="col-sm-3">
+							${yesdayPerson.rows[0].investPerson}88
+						</div>
+						<div class="col-sm-3">
+							${yesday.firstInvestCount}88
+						</div>
+
+					</div>
+
 					</div>
 
 			</div>
@@ -134,32 +88,14 @@
 <div class="ibox-content">
 <div class="row">
 	<ul class="nav nav-tabs col-sm-6" id="myTab" >
-		<li class="active"><a href="#home" data-toggle="tab">人数趋势</a></li>
-		<li><a href="#profile" data-toggle="tab">金额趋势</a></li>
-		<li><a href="#messages" data-toggle="tab">数据列表</a></li>
+		<li class="active"><a href="#home" data-toggle="tab">工人图表</a></li>
+		<li><a href="#profile" data-toggle="tab">出勤率</a></li>
+		<li><a href="#messages" data-toggle="tab">工种分布</a></li>
+		<li><a href="#messages" data-toggle="tab">最新动态</a></li>
 	</ul>
 
     <div class="col-sm-6 row">
-        <form id="selectUnit">
-            <input type="radio" name="radio" value="1" checked="checked"> 时&nbsp;
-            <input type="radio" name="radio" value="2"> 天&nbsp;
-            <input type="radio" name="radio" value="3"> 周&nbsp;
-            <input type="radio" name="radio" value="4"> 月&nbsp;&nbsp;
 
-            <select style="width:90px" id="selectDate">
-				<option value='today'>今天</option>
-				<option value='yestoday'>昨天</option>
-				<option value='choose1'>自选</option>
-            </select>&nbsp;&nbsp;
-
-
-			<input type="text"  id="startTime" name="startTime"
-				   placeholder="开始日期" style="text-align: left;width: 100px;display: none">&nbsp;
-			<input type="text"  id="endTime" name="endTime"
-				   placeholder="结束日期" style="text-align: left;width: 100px;display: none">
-			<input type="button" class="button" id="checkButton" value="确定">
-
-        </form>
 	</div>
 
 
@@ -498,7 +434,7 @@
                         trigger: 'axis'
                     },
                     legend: {
-                        data:['注册人数','投资人数','首投人数']
+                        data:['现场实时人数','日累计人数','队伍在场人数']
                     },
                     grid: {
                         left: '3%',
@@ -521,17 +457,17 @@
                     },
                     series: [
                         {
-                            name:'注册人数',
+                            name:'现场实时人数',
                             type:'line',
                             data:registerArray
                         },
                         {
-                            name:'投资人数',
+                            name:'日累计人数',
                             type:'line',
                             data:investArray
                         },
                         {
-                            name:'首投人数',
+                            name:'队伍在场人数',
                             type:'line',
                             data:firstInvestArray
                         }
@@ -645,21 +581,21 @@
         data: {startTime: startTime,endTime:endTime,type:val_checkUnit},
         columns : [
             {field : "dateTime",title : "时间",width : "10%",align: 'center',valign: 'middle'},
-            {field : "registerCount",title: '注册人数/人',width : "10%",align: 'center',valign: 'middle',formatter:function(value,row,index){
+            {field : "registerCount",title: '现场实时人数/人',width : "10%",align: 'center',valign: 'middle',formatter:function(value,row,index){
                 if(value != null){
                     return value;
                 }else{
                     return '-';
                 }
             }},
-            {field : "investCount",title : "投资人数/人",width : "5%",align: 'center',valign: 'middle',formatter:function(value,row,index){
+            {field : "investCount",title : "日累计人数/人",width : "5%",align: 'center',valign: 'middle',formatter:function(value,row,index){
                 if(value != null){
                     return value;
                 }else{
                     return '-';
                 }
             }},
-            {field : "firstInvestCount",title : "首投人数/人",width : "5%",align: 'center',valign: 'middle',formatter:function(value,row,index){
+            {field : "firstInvestCount",title : "队伍在场人数/人",width : "5%",align: 'center',valign: 'middle',formatter:function(value,row,index){
                 if(value != null){
                     return value;
                 }else{

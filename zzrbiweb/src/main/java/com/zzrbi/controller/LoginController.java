@@ -68,9 +68,9 @@ public class LoginController extends BaseController{
 					String currentPassword = StringUtils.objectToString(userLogin.getPasswd());
 					if(!UtilValidate.areEqual(currentPassword,MD5.encodeByMd5AndSaltWithJs(password))){
 						returnMap = ReturnMapUtil.getErrorMap("2", "用户名或密码错误");
-					} else if (!isValid(verCode, userLogin.getSecurityCode())) {
+					} /*else if (!isValid(verCode, userLogin.getSecurityCode())) {
 						returnMap = ReturnMapUtil.getErrorMap("4", "令牌错误");
-					} else{
+					}*/ else{
 						request.getSession().setAttribute("partyId", userLogin.getId());
 						request.getSession().setAttribute("userName", userName);
 					}
