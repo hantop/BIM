@@ -46,18 +46,18 @@
             		    <div class="form-group">
 			                <div class="col-sm-11">
 		            		    <div class="col-sm-6">
-	                               <label class="col-sm-4 control-label">班组</label>
+	                               <label class="col-sm-4 control-label">人员姓名</label>
 	                               <div class="col-sm-8">
 	                                  <input type="text" class="form-control" id="staffName" name="staffName" value="">
 	                               </div>
 		            		    </div>
 		            		    <div class="col-sm-6">
-	                               <label class="col-sm-4 control-label">所属公司</label>
+	                               <label class="col-sm-4 control-label">所属班组</label>
 	                               <div class="col-sm-8">
 	                                  <select class="chosen-select" id="userRoleId1" name="userRoleId">
 										  <option value ="">请选择...</option>
 										  <c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	  <option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+					                    	  <option value="${userRole.id}" hassubinfo="true">${userRole.roleName}</option>
 										  </c:forEach>
 									  </select>
 	                               </div>
@@ -97,9 +97,9 @@
 			<!--员工列表-->
             <div class="ibox">
 	            <div class="ibox-title">
-                	<h5>班组管理</h5>
+                	<h5>人员管理</h5>
 	                <div class="ibox-tools">
-                        <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#add_team"><i class="fa fa-user-plus"></i> 添加班组</button>
+                        <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#add_staff"><i class="fa fa-user-plus"></i> 添加人员</button>
                     </div>
             	</div>
 		        <table id="datatable"></table>  
@@ -107,41 +107,48 @@
         </div>
 	</div>
 	<!-- 添加员工 -->
-	<div class="modal inmodal" id="add_team" role="dialog" aria-hidden="true" data-backdrop="static" style="display: none;">
+	<div class="modal inmodal" id="add_staff" role="dialog" aria-hidden="true" data-backdrop="static" style="display: none;">
     	<div class="modal-dialog">
-       	    <form id="addTeamForm" class="modal-content animated fadeIn" novalidate="novalidate">
+       	    <form id="addStaffForm" class="modal-content animated fadeIn" novalidate="novalidate"> 
            	   <div class="modal-header">
                     <button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title text-left">新增班组</h4>
+                    <h4 class="modal-title text-left">新增用户</h4>
                   </div>
                 <div class="modal-body">
 					<div class="form-horizontal ">
 					      <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>班组名称：</label>
+							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>员工名：</label>
 		                    <div class="col-sm-8">
 		                        <input type="text" class="form-control" name="userName" id="userName" data-rule-required="true"  data-rule-rangelength="[4,12]">
 		                    </div></div>
 		                </div>
 		                <div class="form-group">
 							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属公司：</label>
+								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属角色：</label>
 								<div class="col-sm-8">
 								  <select class="form-control" name="userRoleId" id="userRoleId" data-rule-required="true"  data-live-search="true">
 	                                   <option value="">请选择...</option>
 		                       			<c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.roleName}</option>
 										</c:forEach>
 	                               </select>
 								</div>
 			                </div>
 			            </div>
 					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>班长：</label>
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>密码：</label>
 		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="password" id="password" data-rule-required="true" data-rule-rangelength="[6,12]">
+		                        <input type="password" class="form-control" name="password" id="password" data-rule-required="true" data-rule-rangelength="[6,12]">
 		                    </div></div>
 		                </div>
-
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>确认密码：</label>
+			                    <div class="col-sm-8">
+			                        <input type="password" class="form-control" name="addPwdConfirm" id="addPwdConfirm" data-rule-required="true" data-rule-equalTo="#addStaffForm #password" data-msg-equalTo="<i class='fa fa-times-circle'></i> 两次输入的密码不一致">
+			                    </div>
+		                    </div>
+		                </div>
 					    <div class="form-group"><div class="col-sm-12">
 							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>手机号：</label>
 		                    <div class="col-sm-8">
@@ -149,7 +156,12 @@
 		                        
 		                    </div></div>
 		                </div>
-
+					    <div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>邮箱：</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" class="form-control" name="emailCode" id="emailCode" data-rule-required="true" data-rule-email="true">
+		                    </div></div>
+		                </div>		              
 		            </div>
                 </div>
                 <div class="modal-footer">
@@ -162,15 +174,15 @@
 	<!-- 编辑员工 -->
 	<div class="modal inmodal" id="edit_staff" role="dialog" aria-hidden="true" data-backdrop="static" style="display: none;">
     	<div class="modal-dialog">
-       	   <form id="editTeamForm" class="modal-content animated fadeIn" novalidate="novalidate" >
+       	   <form id="editStaffForm" class="modal-content animated fadeIn" novalidate="novalidate" >
            	   <div class="modal-header">
                     <button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title text-left">编辑班组</h4>
+                    <h4 class="modal-title text-left">编辑员工</h4>
                   </div>
                 <div class="modal-body">
 					<div class="form-horizontal ">
 					     <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>班组名称：</label>
+							<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>员工名：</label>
 		                    <div class="col-sm-8">
 		                        <input type="hidden" class="form-control" name="partyId" id="partyId">		                        
 		                        <input type="text" class="form-control" name="userName" id="userNames" readonly>
@@ -178,27 +190,43 @@
 		                </div>
 					    <div class="form-group">
 							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属公司：</label>
+								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属角色：</label>
 								<div class="col-sm-8">
 	                               <select class="form-control" name="userRoleId" id="userRoleIds" data-rule-required="true"  data-live-search="true">
 	                                   <option value="">请选择...</option>
 		                       			<c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.roleName}</option>
 										</c:forEach>
 	                               </select>
 	                               
 								</div>
 			                </div>			                
 			            </div>
-
+					    <div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label">是否修改密码：</label>
+			                    <div class="col-sm-8">
+			                    	<input type="hidden" class="form-control" name="isUpdatePwd" id="isUpdatePwd">
+			                        <div class="checkbox i-checks" id="checkPassword">
+                                        <label><input type="checkbox" ><i></i></label>
+                                    </div>
+			                    </div>
+		                    </div>
+		                </div>
 						<div class="form-group mm1"><div class="col-sm-12">
-							<label class="col-sm-3 control-label">班长：</label>
+							<label class="col-sm-3 control-label">密码：</label>
 		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="password" id="passwords">
+		                        <input type="password" class="form-control" name="password" id="passwords">
 		                        <label id="password-error" class="field_error"></label>
 		                    </div></div>
 		                </div>
-
+						<div class="form-group mm2"><div class="col-sm-12">
+							<label class="col-sm-3 control-label">确认密码：</label>
+		                    <div class="col-sm-8">
+		                        <input type="password" class="form-control" name="password_two" id="password_two">
+		                        <label id="password_two-error" class="field_error"></label>
+		                    </div></div>
+		                </div>
 					    <div class="form-group">
 							<div class="col-sm-12">
 								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>手机号：</label>
@@ -208,7 +236,13 @@
 			                    </div>
 		                    </div>
 		                </div>
-
+					    <div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>邮箱：</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" class="form-control" name="emailCode" id="emailCodes">
+		                        
+		                    </div></div>
+		                </div>
 		            </div>
                 </div>
                 <div class="modal-footer">
@@ -227,17 +261,23 @@
     	// 装载列表
     	function installGrid(){
     		$("#datatable").jqGrid({
-    			url : "<%=request.getContextPath()%>/getWorkTeamList.shtml", // 请求地址
+    			url : "<%=request.getContextPath()%>/getWorkerList.shtml", // 请求地址
     			showExport:false,
     			data: {staffName: $("#searchForm #staffName").val(),userRoleId: $("#searchForm #userRoleId1").val()},
     			columns : [ 
-    			    {field : "id",title : "班组标识",width : "0%",visible:false},
-    			    {field : "creatTime",title : "加入时间",width : "0%",visible:false},
-    			    {field : "teamName",title: '班组名',width : "10%",align: 'center',valign: 'middle'},
-    			    {field : "teamManager",title: '班长',width : "10%",align: 'center',valign: 'middle'},
-    			    {field : "mobile",title: '手机',width : "10%",align: 'center',valign: 'middle'}, 
-
-    			    {field : "operate",title : "操作",width : "15%",align: 'center',valign: 'middle',
+    			    {field : "id",title : "用户标识",width : "0%",visible:false}, 
+    			    {field : "realName",title : "姓名",width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "sex",title: '性别',width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "age",title: '年龄',width : "5%",align: 'center',valign: 'middle'},
+    			    {field : "nation",title: '民族',width : "5%",align: 'center',valign: 'middle'},
+    			    {field : "idCard",title: '身份证',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "contractStatus",title: '合同状态',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "type",title: '身份',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "cardTime",title: '进场时间',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "cardTime",title: '退场时间',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "station",title: '岗位',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "department",title: '部门',width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "operate",title : "操作",width : "10%",align: 'center',valign: 'middle',
     			    	formatter:function(value,row,index){
     						return   "<a href='javascript:void(0);' class='edit_party'>编辑</a>&nbsp;"  			    		
     								+"<a href='javascript:void(0);' class='remove_party'>&nbsp;删除</a>";					    		
@@ -246,30 +286,30 @@
     				    	'click .edit_party': function (e, value, row, index) {
     				    		$('.mm1').hide();
     				    		$('.mm2').hide();
-    				    		$("#editTeamForm #userRoleIds").val(row.userRoleId);
-    					    	$("#editTeamForm #userRoleIds").trigger('chosen:updated');
+    				    		$("#editStaffForm #userRoleIds").val(row.userRoleId);
+    					    	$("#editStaffForm #userRoleIds").trigger('chosen:updated');
     				    	    
-    				    		$("#editTeamForm #isUpdatePwd").val(false);
-    				    		$("#editTeamForm #partyId").val(row.id);
-    				    	    $("#editTeamForm #userNames").val(row.staffName);
-    				    	    $("#editTeamForm #emailCodes").val(row.email);
-    				    	    $("#editTeamForm #phoneCodes").val(row.mobile);
+    				    		$("#editStaffForm #isUpdatePwd").val(false);
+    				    		$("#editStaffForm #partyId").val(row.id);   				    	   
+    				    	    $("#editStaffForm #userNames").val(row.staffName);
+    				    	    $("#editStaffForm #emailCodes").val(row.email);
+    				    	    $("#editStaffForm #phoneCodes").val(row.mobile);
     				    	    
     				    	    $('#edit_staff').modal();
     			   			},
     				    	'click .remove_party': function (e, value, row, index) {
     				    		fairAlert.confirm({
-    				    			msg:'您确定要删除该班组吗？删除后不可恢复！',
+    				    			msg:'您确定要删除该用户吗？删除后不可恢复！',
     				    			confirmCallback:function(){
     									ajaxPostJson({
     										url:"<%=request.getContextPath()%>/removeUser.shtml",
     										data:{id:row.id},
     										success:function(result){   										   
     								    	    if(result == "success") {
-    								    			fairAlert.success({"msg":"已成功删除班组"});
+    								    			fairAlert.success({"msg":"已成功删除用户"});
     								    			installGrid();
     								    	    }else{
-    												fairAlert.error({"msg":"删除班组失败"});
+    												fairAlert.error({"msg":"删除用户失败"});
     								    	    }
     								    	}
     									});
@@ -293,48 +333,48 @@
                     type: "get",
                     dataType: "json",
                     data: {userName: function(){
-                    	return $("#addTeamForm #userName").val();
+                    	return $("#addStaffForm #userName").val();
                     }}
                 }
             }
     	}; 
-    	var message = {userName: { remote:e+"班组已经存在"}};
+    	var message = {userName: { remote:e+"员工名已经存在"}};
     	// 添加员工表单提交
-    	$("#addTeamForm").validate({
+    	$("#addStaffForm").validate({   		
              rules: rules, 
             messages: message,           
             submitHandler:function(form){
             		$(form).ajaxSubmit({
-            			url : "<%=request.getContextPath()%>/addAndUpdateWorkTeam.shtml",
+            			url : "<%=request.getContextPath()%>/addAndUpdateUser.shtml", 
            			    dataType: "json",
            			    type: 'POST',
            			 	clearForm:true,
            				resetForm: true,
            				beforeSubmit:function(formData, jqForm, options){          					
-           					formData[2].value = $("#addTeamForm #password").val()
+           					formData[2].value = $.md5($("#addStaffForm #password").val())
            					console.log(formData);
            				},
            				success: function(result){
            			    	if(result == "success") {
-           			    		fairAlert.success({"msg":"已成功添加班组"});
+           			    		fairAlert.success({"msg":"已成功添加用户"});
            			    	}else{
-           			    		fairAlert.error({"msg":"添加班组失败"});
+           			    		fairAlert.error({"msg":"添加用户失败"});
            			    	}
            			    	installGrid();
-           			    	$('#add_team').modal('hide');
-           			    	resetForm("addTeamForm");
+           			    	$('#add_staff').modal('hide');
+           			    	resetForm("addStaffForm");
            				}
             		});
-               window.location.href="<%=request.getContextPath()%>/workTeam.shtml";
+               window.location.href="<%=request.getContextPath()%>/staffIndex.shtml";
             }    
         });
-    	$("#editTeamForm #checkPassword").on('ifClicked',function(){
+    	$("#editStaffForm #checkPassword").on('ifClicked',function(){
     		if($(this).find('div').hasClass('checked')){
-    			$("#editTeamForm #isUpdatePwd").val(false);
+    			$("#editStaffForm #isUpdatePwd").val(false);
     			$('.mm1').hide();
 	    		$('.mm2').hide();
     		}else{
-    			$("#editTeamForm #isUpdatePwd").val(true);
+    			$("#editStaffForm #isUpdatePwd").val(true);
     			$('.mm1').show();
 	    		$('.mm2').show();
     		}
@@ -343,52 +383,52 @@
     	 * 检查是否修改面
     	 */
     	function validateUpdatePassword(){
-    		if($("#editTeamForm #isUpdatePwd").val() == true || $("#editTeamForm #isUpdatePwd").val() == "true"){
-    			var pas = $("#editTeamForm #passwords").val();
-    			var past = $("#editTeamForm #password_two").val();
+    		if($("#editStaffForm #isUpdatePwd").val() == true || $("#editStaffForm #isUpdatePwd").val() == "true"){
+    			var pas = $("#editStaffForm #passwords").val();
+    			var past = $("#editStaffForm #password_two").val();
     			if(pas == undefined || pas.length == 0){
-    				$("#editTeamForm #password-error").html('<i class="fa fa-times-circle"></i> 必填');
-    				$("#editTeamForm #password-error").css("display","block");
+    				$("#editStaffForm #password-error").html('<i class="fa fa-times-circle"></i> 必填');
+    				$("#editStaffForm #password-error").css("display","block");
     				return false;
     			}else if(pas.length > 12 || pas.length < 6 ){
-    				$("#editTeamForm #password-error").html('<i class="fa fa-times-circle"></i> 请输入长度为 6 至 12 之间的字符串');
-    				$("#editTeamForm #password-error").css("display","block");
+    				$("#editStaffForm #password-error").html('<i class="fa fa-times-circle"></i> 请输入长度为 6 至 12 之间的字符串');
+    				$("#editStaffForm #password-error").css("display","block");
     				return false;
     			}else{
-    				$("#editTeamForm #password-error").html('');
-    				$("#editTeamForm #password-error").css("display","none");
+    				$("#editStaffForm #password-error").html('');
+    				$("#editStaffForm #password-error").css("display","none");
     				if(past == undefined || past.length == 0){
-    					$("#editTeamForm #password_two-error").html('<i class="fa fa-times-circle"></i> 必填');
-    					$("#editTeamForm #password_two-error").css("display","block");
+    					$("#editStaffForm #password_two-error").html('<i class="fa fa-times-circle"></i> 必填');
+    					$("#editStaffForm #password_two-error").css("display","block");
     					return false;
     				}else{
     					if(pas != past ){
-    						$("#editTeamForm #password_two-error").html('<i class="fa fa-times-circle"></i> 两次输入的值不一致');
-    						$("#editTeamForm #password_two-error").css("display","block");
+    						$("#editStaffForm #password_two-error").html('<i class="fa fa-times-circle"></i> 两次输入的值不一致');
+    						$("#editStaffForm #password_two-error").css("display","block");
     						return false;
     					}else{
-    						$("#editTeamForm #password_two-error").html('');
-    						$("#editTeamForm #password_two-error").css("display","none");
+    						$("#editStaffForm #password_two-error").html('');
+    						$("#editStaffForm #password_two-error").css("display","none");
     						return true;
     					}
     				}
     			}
     		}else{
-    			$("#editTeamForm #password-error").html('');
-    			$("#editTeamForm #password-error").css("display","none");
-    			$("#editTeamForm #password_two-error").html('');
-    			$("#editTeamForm #password_two-error").css("display","none");
+    			$("#editStaffForm #password-error").html('');
+    			$("#editStaffForm #password-error").css("display","none");
+    			$("#editStaffForm #password_two-error").html('');
+    			$("#editStaffForm #password_two-error").css("display","none");
     			return true;
     		}
     	}
-    	$("#editTeamForm #passwords").blur(function(){
+    	$("#editStaffForm #passwords").blur(function(){
     		validateUpdatePassword();
     	});
-    	$("#editTeamForm #password_two").blur(function(){
+    	$("#editStaffForm #password_two").blur(function(){
     		validateUpdatePassword();
     	});
     	// 编辑员工表单提交
-    	$("#editTeamForm").validate({
+    	$("#editStaffForm").validate({
     	    rules: rules, 
     		messages: message,
     		submitHandler:function(form){
@@ -400,20 +440,20 @@
     					clearForm:true,
     					resetForm: true,
     					beforeSubmit:function(formData, jqForm, options){ 
-    						if($("#editTeamForm #passwords").val()!=undefined && $("#editTeamForm #passwords").val().length != 0){
-    							formData[4].value = $("#editTeamForm #passwords").val()
+    						if($("#editStaffForm #passwords").val()!=undefined && $("#editStaffForm #passwords").val().length != 0){
+    							formData[4].value = $.md5($("#editStaffForm #passwords").val())
     						}
     						console.log(formData);
     					},
     					success: function(result){
     						if(result == "success") {
-           			    		fairAlert.success({"msg":"已成功修改班组"});
+           			    		fairAlert.success({"msg":"已成功修改用户"});
            			    	}else{
-           			    		fairAlert.error({"msg":"修改班组失败"});
+           			    		fairAlert.error({"msg":"修改用户失败"});
            			    	}
     						installGrid();
     						$('#edit_staff').modal('hide');
-    						resetForm("editTeamForm");
+    						resetForm("editStaffForm");
     					}
     				});
     			}
