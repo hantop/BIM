@@ -138,4 +138,61 @@ public class CultivateController extends BaseController {
 		}
 	}
 
+	/**
+	 *  @Description 楼宇展示列表
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/floor")
+	public ModelAndView floor(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>楼宇展示列表页");
+
+			return new ModelAndView("worker/floor");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
+	/**
+	 *  @Description 房间展示列表
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/room")
+	public ModelAndView room(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>房间展示列表页");
+
+			return new ModelAndView("worker/room");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
+	/**
+	 *  @Description 床位展示发放列表
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/bed")
+	public ModelAndView bed(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>床位展示列表页");
+
+			return new ModelAndView("worker/bed");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
 }
