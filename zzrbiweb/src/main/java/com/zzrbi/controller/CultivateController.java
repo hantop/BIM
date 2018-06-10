@@ -195,4 +195,64 @@ public class CultivateController extends BaseController {
 		}
 	}
 
+	/**
+	 *  @Description 授权列表列表  0=正式授权1=临时授权
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/workCard")
+	public ModelAndView workCard(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>授权列表页");
+
+			String empower = request.getParameter("empower");
+			request.setAttribute("empower", empower);
+
+			return new ModelAndView("worker/workCard");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
+	/**
+	 *  @Description 授权门区管理列表
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/workCardArea")
+	public ModelAndView workCardArea(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>授权门区管理列表");
+
+			return new ModelAndView("worker/workCardArea");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
+	/**
+	 *  @Description 授权发卡列表
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/workCardStatistics")
+	public ModelAndView workCardStatistics(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>授权发卡列表");
+
+			return new ModelAndView("worker/workCardStatistics");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
 }
