@@ -107,38 +107,68 @@
                 <div class="modal-body">
 					<div class="form-horizontal ">
 					      <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>班组名称：</label>
+							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>发生时间：</label>
 		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="userName" id="userName" data-rule-required="true"  data-rule-rangelength="[4,12]">
+		                        <input type="text" class="form-control" name="happenTime" id="happenTime" >
+								<input type="hidden" class="form-control" name="rtype" id="rtype" value="${rtype}"/>
 		                    </div></div>
 		                </div>
-		                <div class="form-group">
-							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属公司：</label>
-								<div class="col-sm-8">
-								  <select class="form-control" name="userRoleId" id="userRoleId" data-rule-required="true"  data-live-search="true">
-	                                   <option value="">请选择...</option>
-		                       			<c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
-										</c:forEach>
-	                               </select>
-								</div>
-			                </div>
-			            </div>
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>严重程度/奖项：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="level" id="level" >
+							</div></div>
+						</div>
+
 					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>班长：</label>
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>原因：</label>
 		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="password" id="password" data-rule-required="true" data-rule-rangelength="[6,12]">
+		                        <input type="text" class="form-control" name="reason" id="reason"  >
+
 		                    </div></div>
 		                </div>
 
-					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>手机号：</label>
-		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="phoneCode" id="phoneCode" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
-		                        
-		                    </div></div>
-		                </div>
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>备注：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="remark" id="remark" >
+
+							</div></div>
+						</div>
+
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属公司：</label>
+								<div class="col-sm-4">
+									<select class="form-control" name="userRoleId" id="userRoleIds" data-rule-required="true"  data-live-search="true">
+										<option value="">请选择公司...</option>
+										<c:forEach var="userRole" items="${userRoleList}" begin="0">
+											<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="col-sm-4">
+									<select class="form-control" name="userRoleId" id="userRoleId" data-rule-required="true"  data-live-search="true">
+										<option value="">请选择班组...</option>
+										<c:forEach var="userRole" items="${userRoleList}" begin="0">
+											<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>事发人员：</label>
+							<div class="col-sm-8">
+								<input id="r1" type="radio" value="0" name="workId">张三</input>
+								<input id="r2" type="radio" value="1" name="workId">李四</input>
+								<input id="r3" type="radio" value="0" name="workId">张三</input>
+								<input id="r4" type="radio" value="1" name="workId">李四</input>
+							</div></div>
+						</div>
 
 		            </div>
                 </div>
@@ -149,67 +179,7 @@
         	 </form> 
     	</div>
     </div>
-	<!-- 编辑员工 -->
-	<div class="modal inmodal" id="edit_staff" role="dialog" aria-hidden="true" data-backdrop="static" style="display: none;">
-    	<div class="modal-dialog">
-       	   <form id="editTeamForm" class="modal-content animated fadeIn" novalidate="novalidate" >
-           	   <div class="modal-header">
-                    <button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title text-left">编辑
-						<c:if test="${rtype eq 0}">不良</c:if>
-						<c:if test="${rtype eq 1}">奖励</c:if>记录</h4>
-                  </div>
-                <div class="modal-body">
-					<div class="form-horizontal ">
-					     <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>班组名称：</label>
-		                    <div class="col-sm-8">
-		                        <input type="hidden" class="form-control" name="partyId" id="partyId">		                        
-		                        <input type="text" class="form-control" name="userName" id="userNames" readonly>
-		                    </div></div>
-		                </div>
-					    <div class="form-group">
-							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属公司：</label>
-								<div class="col-sm-8">
-	                               <select class="form-control" name="userRoleId" id="userRoleIds" data-rule-required="true"  data-live-search="true">
-	                                   <option value="">请选择...</option>
-		                       			<c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
-										</c:forEach>
-	                               </select>
-	                               
-								</div>
-			                </div>			                
-			            </div>
 
-						<div class="form-group mm1"><div class="col-sm-12">
-							<label class="col-sm-3 control-label">班长：</label>
-		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="password" id="passwords">
-		                        <label id="password-error" class="field_error"></label>
-		                    </div></div>
-		                </div>
-
-					    <div class="form-group">
-							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>手机号：</label>
-			                    <div class="col-sm-8">
-			                        <input type="text" class="form-control" name="phoneCode" id="phoneCodes">
-			                        
-			                    </div>
-		                    </div>
-		                </div>
-
-		            </div>
-                </div>
-                <div class="modal-footer">
-	                 <button type="reset" class="btn btn-outline btn-default" data-dismiss="modal"><i class="fa fa-remove"></i>&nbsp;取消</button>
-                     <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;确定</button>
-                </div>
-        	</form>
-    	</div>
-    </div>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/tool/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.include.js?V=1.3"></script>
      <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js?v=1.3"></script>   
@@ -229,48 +199,7 @@
     			    {field : "worker",title: '班组/工人',width : "10%",align: 'center',valign: 'middle'},
     			    {field : "reason",title: '时间发生原因',width : "15%",align: 'center',valign: 'middle'},
                     {field : "reason",title: '程度/奖项',width : "10%",align: 'center',valign: 'middle'},
-                    {field : "remark",title: '备注',width : "10%",align: 'center',valign: 'middle'},
-    			    {field : "operate",title : "操作",width : "10%",align: 'center',valign: 'middle',
-    			    	formatter:function(value,row,index){
-    						return   "<a href='javascript:void(0);' class='edit_party'>编辑</a>&nbsp;"  			    		
-    								+"<a href='javascript:void(0);' class='remove_party'>&nbsp;删除</a>";					    		
-    				    },
-    				    events:{
-    				    	'click .edit_party': function (e, value, row, index) {
-    				    		$('.mm1').hide();
-    				    		$('.mm2').hide();
-    				    		$("#editTeamForm #userRoleIds").val(row.userRoleId);
-    					    	$("#editTeamForm #userRoleIds").trigger('chosen:updated');
-    				    	    
-    				    		$("#editTeamForm #isUpdatePwd").val(false);
-    				    		$("#editTeamForm #partyId").val(row.id);
-    				    	    $("#editTeamForm #userNames").val(row.staffName);
-    				    	    $("#editTeamForm #emailCodes").val(row.email);
-    				    	    $("#editTeamForm #phoneCodes").val(row.mobile);
-    				    	    
-    				    	    $('#edit_staff').modal();
-    			   			},
-    				    	'click .remove_party': function (e, value, row, index) {
-    				    		fairAlert.confirm({
-    				    			msg:'您确定要删除该班组吗？删除后不可恢复！',
-    				    			confirmCallback:function(){
-    									ajaxPostJson({
-    										url:"<%=request.getContextPath()%>/removeUser.shtml",
-    										data:{id:row.id},
-    										success:function(result){   										   
-    								    	    if(result == "success") {
-    								    			fairAlert.success({"msg":"已成功删除班组"});
-    								    			installGrid();
-    								    	    }else{
-    												fairAlert.error({"msg":"删除班组失败"});
-    								    	    }
-    								    	}
-    									});
-    								}
-    				    		})
-    			   			},
-    			   		}
-    			    }, 
+                    {field : "remark",title: '备注',width : "10%",align: 'center',valign: 'middle'}
     			]
     		});
     	}

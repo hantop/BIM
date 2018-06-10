@@ -22,7 +22,7 @@
 
 	    <div class="content">
 		    <div class="con_title">
-		    	<span>数据后台管理系统</span><span class="cVersion">v1.0</span>
+		    	<span>现场劳务管理系统</span><span class="cVersion">v1.0</span>
 		    </div>
 		    <div class="con_bd">
 		    	<div class="uname pop_check">
