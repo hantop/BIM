@@ -99,4 +99,43 @@ public class CultivateController extends BaseController {
 		}
 	}
 
+	/**
+	 *  @Description 工时统计列表页
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/workerCardRecord")
+	public ModelAndView workerCardRecord(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>工时统计列表页");
+
+			return new ModelAndView("worker/workerCardRecord");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
+
+	/**
+	 *  @Description 工资发放列表
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/wages")
+	public ModelAndView wages(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>工资发放列表页");
+
+			return new ModelAndView("worker/wages");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
 }
