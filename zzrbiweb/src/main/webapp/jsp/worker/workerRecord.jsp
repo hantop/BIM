@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>人员管理</title>
+<title>不良记录、奖励记录</title>
 	<link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
   	<link href="<%=request.getContextPath()%>/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
@@ -46,23 +46,23 @@
             		    <div class="form-group">
 			                <div class="col-sm-11">
 		            		    <div class="col-sm-6">
-	                               <label class="col-sm-4 control-label">班组</label>
+	                               <label class="col-sm-4 control-label">事件/班组/工人</label>
 	                               <div class="col-sm-8">
 	                                  <input type="text" class="form-control" id="staffName" name="staffName" value="">
 	                               </div>
 		            		    </div>
-		            		    <div class="col-sm-6">
-	                               <label class="col-sm-4 control-label">所属公司</label>
-	                               <div class="col-sm-8">
-	                                  <select class="chosen-select" id="userRoleId1" name="userRoleId">
-										  <option value ="">请选择...</option>
-										  <c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	  <option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
-										  </c:forEach>
-									  </select>
-	                               </div>
-		            		    </div>
-		            		    
+								<c:if test="${rtype eq 0}">
+									<div class="col-sm-6">
+									<label class="col-sm-4 control-label">程度</label>
+									<div class="col-sm-8">
+										<select class="chosen-select" id="userRoleId1" name="userRoleId">
+											<option value ="">请选择...</option>
+												<option value="0" hassubinfo="true">一般</option>
+												<option value="1" hassubinfo="true">严重</option>
+										</select>
+									</div>
+								</div>
+								</c:if>
 	                        </div>
 	                    </div>
 		            	<div class="hr-line-dashed"></div>
@@ -77,29 +77,16 @@
 	            	</form>
 	            </div>
 	        </div>
-			<div  class="modal fade myModal"  role="dialog"  tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content-div">
-						<div class="modal-header">
-							<button class="close" type="button" data-dismiss="modal" aria-hidden="true">×</button>
-							<h3 class="modal-title">二维码</h3>
-						</div>
-						<div class="modal-body">
-							<img id="codeImg" style="height: 300px; width: 300px;" src="">
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						</div>
-					</div>
 
-				</div>
-			</div>
 			<!--员工列表-->
             <div class="ibox">
 	            <div class="ibox-title">
-                	<h5>班组管理</h5>
+                	<h5>记录管理</h5>
 	                <div class="ibox-tools">
-                        <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#add_team"><i class="fa fa-user-plus"></i> 添加班组</button>
+                        <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#add_team">
+							<i class="fa fa-user-plus"></i> 添加
+							<c:if test="${rtype eq 0}">不良</c:if>
+							<c:if test="${rtype eq 1}">奖励</c:if>记录</button>
                     </div>
             	</div>
 		        <table id="datatable"></table>  
@@ -112,7 +99,10 @@
        	    <form id="addTeamForm" class="modal-content animated fadeIn" novalidate="novalidate">
            	   <div class="modal-header">
                     <button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title text-left">新增班组</h4>
+				   <h4 class="modal-title text-left">新增
+					   <c:if test="${rtype eq 0}">不良</c:if>
+					   <c:if test="${rtype eq 1}">奖励</c:if>记录
+				   </h4>
                   </div>
                 <div class="modal-body">
 					<div class="form-horizontal ">
@@ -165,7 +155,9 @@
        	   <form id="editTeamForm" class="modal-content animated fadeIn" novalidate="novalidate" >
            	   <div class="modal-header">
                     <button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title text-left">编辑班组</h4>
+                    <h4 class="modal-title text-left">编辑
+						<c:if test="${rtype eq 0}">不良</c:if>
+						<c:if test="${rtype eq 1}">奖励</c:if>记录</h4>
                   </div>
                 <div class="modal-body">
 					<div class="form-horizontal ">
@@ -232,12 +224,13 @@
     			data: {staffName: $("#searchForm #staffName").val(),userRoleId: $("#searchForm #userRoleId1").val()},
     			columns : [ 
     			    {field : "id",title : "班组标识",width : "0%",visible:false},
-    			    {field : "creatTime",title : "加入时间",width : "0%",visible:false},
-    			    {field : "teamName",title: '班组名',width : "10%",align: 'center',valign: 'middle'},
-    			    {field : "teamManager",title: '班长',width : "10%",align: 'center',valign: 'middle'},
-    			    {field : "mobile",title: '手机',width : "10%",align: 'center',valign: 'middle'}, 
-
-    			    {field : "operate",title : "操作",width : "15%",align: 'center',valign: 'middle',
+    			    {field : "happenTime",title : "发生时间",width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "rtype",title: '类型',width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "worker",title: '班组/工人',width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "reason",title: '时间发生原因',width : "15%",align: 'center',valign: 'middle'},
+                    {field : "reason",title: '程度/奖项',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "remark",title: '备注',width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "operate",title : "操作",width : "10%",align: 'center',valign: 'middle',
     			    	formatter:function(value,row,index){
     						return   "<a href='javascript:void(0);' class='edit_party'>编辑</a>&nbsp;"  			    		
     								+"<a href='javascript:void(0);' class='remove_party'>&nbsp;删除</a>";					    		

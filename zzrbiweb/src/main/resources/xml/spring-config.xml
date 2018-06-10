@@ -12,35 +12,34 @@
     	http://www.springframework.org/schema/context/spring-context.xsd
     	http://www.springframework.org/schema/mvc 
     	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
+	<context:component-scan base-package="com.zzrbi"/>
 	<aop:aspectj-autoproxy />
 
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/*.shtml" />
 			<bean class="com.zzrbi.interceptor.WebContextInterceptor" />
-		</mvc:interceptor>
+			</mvc:interceptor>
 	</mvc:interceptors>
-	
+
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-		<property name="messageConverters"> 
-			<list> 
+		<property name="messageConverters">
+			<list>
    				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
-    				<bean class="org.springframework.http.converter.StringHttpMessageConverter"> 
-	    				<property name="supportedMediaTypes"> 
+    				<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+	    				<property name="supportedMediaTypes">
 		     				<list>
 		      					<value>application/json;charset=UTF-8</value>
-		     				</list> 
+		     				</list>
 	    				</property>
    				</bean>
-   				<bean class="org.springframework.http.converter.ResourceHttpMessageConverter" /> 
+   				<bean class="org.springframework.http.converter.ResourceHttpMessageConverter" />
    				<bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
    				<bean class="org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter" />
    				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
    			</list>
- 		</property> 
+ 		</property>
 	</bean>
 
-	<mvc:annotation-driven />
-
+	<mvc:annotation-driven  />
 </beans>

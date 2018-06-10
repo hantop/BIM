@@ -32,7 +32,7 @@ public class Worker implements Serializable{
 	/**
 	 * 0男  1女
 	 */
-	private Integer sex;
+	private String sex;
 
 	/**
 	 * 年龄
@@ -102,11 +102,11 @@ public class Worker implements Serializable{
 		this.realName = realName;
 	}
 
-	public Integer getSex() {
+	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(Integer sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
@@ -172,5 +172,23 @@ public class Worker implements Serializable{
 
 	public void setDepartment(Integer department) {
 		this.department = department;
+	}
+
+	@Override
+	public String toString() {
+		return "Worker{" +
+				"id=" + id +
+				", teamId=" + teamId +
+				", realName='" + realName + '\'' +
+				", sex=" + sex +
+				", age=" + age +
+				", nation='" + nation + '\'' +
+				", idCard='" + idCard + '\'' +
+				", contractStatus='" + contractStatus + '\'' +
+				", type='" + type + '\'' +
+				", creatTime=" + creatTime +
+				", station='" + station + '\'' +
+				", department=" + department +
+				'}';
 	}
 }

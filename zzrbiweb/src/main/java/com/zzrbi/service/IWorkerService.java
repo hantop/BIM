@@ -32,11 +32,12 @@ public interface IWorkerService {
 	 * @param user
 	 * @return
 	 */
-	public int addUser(Worker user);
-	/**
-	 * 根据id查找用户
-	 * @param id
-	 * @return
+    public int addWorker(Worker user);
+
+    /**
+     * 根据id查找用户
+     * @param id
+     * @return
 	 */
 	public Worker findUserById(Integer id);
 	/**

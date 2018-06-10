@@ -65,4 +65,6 @@ public interface IWorkTeamService {
 
 	List<Map<String, Object>> queryWorkTeamList(int companyId);
 
+	List<Map<String, Object>> queryAllWorkTeam();
+
 }

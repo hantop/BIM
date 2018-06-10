@@ -129,4 +129,11 @@ public class WorkTeamServiceImpl extends BaseDaoImpl implements IWorkTeamService
 		String sql = "select * from work_team WHERE  companyId = "+ companyId;
 		return jdbcTemplate.queryForList(sql);
 	}
+	//查找所有的班组，不限公司
+	@Override
+	public List<Map<String, Object>> queryAllWorkTeam() {
+		logger.info("查找所有的班组，不限公司");
+		String sql="select * from work_team";
+		return jdbcTemplate.queryForList(sql);
+	}
 }

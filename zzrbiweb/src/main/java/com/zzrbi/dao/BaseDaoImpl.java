@@ -112,7 +112,9 @@ private Logger logger = Logger.getLogger(BaseDaoImpl.class);
      */
 	@Override
 	public int insertSqlAndReturnKeyId(String sql, Object[] param) {
+        //获取到sql语句
         final String innersql = sql;
+        //获取参数数组
         final Object[] innerO = param;
         KeyHolder keyHolder = new GeneratedKeyHolder();
         try {
@@ -123,9 +125,9 @@ private Logger logger = Logger.getLogger(BaseDaoImpl.class);
                     PreparedStatement ps = con.prepareStatement(innersql,
                             Statement.RETURN_GENERATED_KEYS);
                     for (int i = 0; i < innerO.length; i++) {
+                        System.out.println(innerO[i]);
                         ps.setObject(i + 1, innerO[i]);
                     }
-
                     return ps;
                 }
             }, keyHolder);

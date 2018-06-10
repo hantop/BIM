@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>人员管理</title>
+<title>安全培训</title>
 	<link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
   	<link href="<%=request.getContextPath()%>/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
@@ -45,24 +45,26 @@
 	                <form class="form-horizontal" id="searchForm">
             		    <div class="form-group">
 			                <div class="col-sm-11">
+
 		            		    <div class="col-sm-6">
-	                               <label class="col-sm-4 control-label">班组</label>
-	                               <div class="col-sm-8">
-	                                  <input type="text" class="form-control" id="staffName" name="staffName" value="">
-	                               </div>
-		            		    </div>
-		            		    <div class="col-sm-6">
-	                               <label class="col-sm-4 control-label">所属公司</label>
+	                               <label class="col-sm-4 control-label">教育类型</label>
 	                               <div class="col-sm-8">
 	                                  <select class="chosen-select" id="userRoleId1" name="userRoleId">
 										  <option value ="">请选择...</option>
-										  <c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	  <option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
-										  </c:forEach>
+										  <option value="1" hassubinfo="true">定期安全培训</option>
+										  <option value="2" hassubinfo="true">安全技术交底</option>
+										  <option value="3" hassubinfo="true">VR安全教育</option>
 									  </select>
 	                               </div>
 		            		    </div>
-		            		    
+
+								<div class="col-sm-6">
+									<label class="col-sm-4 control-label">培训主题</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="staffName" name="staffName" value="">
+									</div>
+								</div>
+
 	                        </div>
 	                    </div>
 		            	<div class="hr-line-dashed"></div>
@@ -77,29 +79,13 @@
 	            	</form>
 	            </div>
 	        </div>
-			<div  class="modal fade myModal"  role="dialog"  tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content-div">
-						<div class="modal-header">
-							<button class="close" type="button" data-dismiss="modal" aria-hidden="true">×</button>
-							<h3 class="modal-title">二维码</h3>
-						</div>
-						<div class="modal-body">
-							<img id="codeImg" style="height: 300px; width: 300px;" src="">
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						</div>
-					</div>
 
-				</div>
-			</div>
 			<!--员工列表-->
             <div class="ibox">
 	            <div class="ibox-title">
-                	<h5>班组管理</h5>
+                	<h5>培训管理</h5>
 	                <div class="ibox-tools">
-                        <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#add_team"><i class="fa fa-user-plus"></i> 添加班组</button>
+                        <button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#add_team"><i class="fa fa-user-plus"></i> 添加培训</button>
                     </div>
             	</div>
 		        <table id="datatable"></table>  
@@ -112,45 +98,87 @@
        	    <form id="addTeamForm" class="modal-content animated fadeIn" novalidate="novalidate">
            	   <div class="modal-header">
                     <button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title text-left">新增班组</h4>
+                    <h4 class="modal-title text-left">新增培训</h4>
                   </div>
                 <div class="modal-body">
 					<div class="form-horizontal ">
-					      <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>班组名称：</label>
-		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="userName" id="userName" data-rule-required="true"  data-rule-rangelength="[4,12]">
-		                    </div></div>
-		                </div>
-		                <div class="form-group">
+
+						<div class="form-group">
 							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属公司：</label>
+								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>教育类型：</label>
 								<div class="col-sm-8">
-								  <select class="form-control" name="userRoleId" id="userRoleId" data-rule-required="true"  data-live-search="true">
-	                                   <option value="">请选择...</option>
-		                       			<c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
-										</c:forEach>
-	                               </select>
+									<select class="form-control" name="studyType" id="studyType" data-rule-required="true"  data-live-search="true">
+										<option value ="">请选择...</option>
+										<option value="1" hassubinfo="true">定期安全培训</option>
+										<option value="2" hassubinfo="true">安全技术交底</option>
+										<option value="3" hassubinfo="true">VR安全教育</option>
+									</select>
 								</div>
-			                </div>
-			            </div>
-					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>班长：</label>
+							</div>
+						</div>
+
+					  <div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>培训主题：</label>
 		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="password" id="password" data-rule-required="true" data-rule-rangelength="[6,12]">
+		                        <input type="text" class="form-control" name="title" id="title" data-rule-required="true"  data-rule-rangelength="[4,12]">
 		                    </div></div>
 		                </div>
 
 					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>手机号：</label>
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>培训日期：</label>
 		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="phoneCode" id="phoneCode" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
+		                        <input type="text" class="form-control" name="studyDate" id="studyDate" data-rule-required="true" data-rule-rangelength="[6,12]">
+		                    </div></div>
+		                </div>
+
+					    <div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>培训人：</label>
+		                    <div class="col-sm-8">
+		                        <input type="text" class="form-control" name="teacher" id="teacher" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
 		                        
 		                    </div></div>
 		                </div>
 
-		            </div>
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>培训课时：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="studylong" id="studylong" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
+
+							</div></div>
+						</div>
+
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>培训人数：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="students" id="students" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
+
+							</div></div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属公司：</label>
+								<div class="col-sm-4">
+									<select class="form-control" name="userRoleId" id="userRoleIds" data-rule-required="true"  data-live-search="true">
+										<option value="">请选择公司...</option>
+										<c:forEach var="userRole" items="${userRoleList}" begin="0">
+											<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="col-sm-4">
+									<select class="form-control" name="userRoleId" id="userRoleId" data-rule-required="true"  data-live-search="true">
+										<option value="">请选择班组...</option>
+										<c:forEach var="userRole" items="${userRoleList}" begin="0">
+											<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
                 </div>
                 <div class="modal-footer">
 	                 <button type="reset" class="btn btn-outline btn-default" data-dismiss="modal"><i class="fa fa-remove"></i>&nbsp;取消</button>
@@ -159,65 +187,125 @@
         	 </form> 
     	</div>
     </div>
+
+
 	<!-- 编辑员工 -->
 	<div class="modal inmodal" id="edit_staff" role="dialog" aria-hidden="true" data-backdrop="static" style="display: none;">
-    	<div class="modal-dialog">
-       	   <form id="editTeamForm" class="modal-content animated fadeIn" novalidate="novalidate" >
-           	   <div class="modal-header">
-                    <button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title text-left">编辑班组</h4>
-                  </div>
-                <div class="modal-body">
+		<div class="modal-dialog">
+			<form id="editTeamForm" class="modal-content animated fadeIn" novalidate="novalidate" >
+				<div class="modal-header">
+					<button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title text-left">编辑培训</h4>
+				</div>
+				<div class="modal-body">
 					<div class="form-horizontal ">
-					     <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>班组名称：</label>
-		                    <div class="col-sm-8">
-		                        <input type="hidden" class="form-control" name="partyId" id="partyId">		                        
-		                        <input type="text" class="form-control" name="userName" id="userNames" readonly>
-		                    </div></div>
-		                </div>
-					    <div class="form-group">
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>教育类型：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="studyType" id="studyTypes" data-rule-required="true"  data-live-search="true">
+										<option value ="">请选择...</option>
+										<option value="1" hassubinfo="true">定期安全培训</option>
+										<option value="2" hassubinfo="true">安全技术交底</option>
+										<option value="3" hassubinfo="true">VR安全教育</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>培训主题：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="title" id="titles" data-rule-required="true"  data-rule-rangelength="[4,12]">
+							</div></div>
+						</div>
+
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>培训日期：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="studyDate" id="studyDates" data-rule-required="true" data-rule-rangelength="[6,12]">
+							</div></div>
+						</div>
+
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>培训人：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="teacher" id="teachers" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
+
+							</div></div>
+						</div>
+
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>培训课时：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="studylong" id="studylongs" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
+
+							</div></div>
+						</div>
+
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>培训人数：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="students" id="studentss" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
+
+							</div></div>
+						</div>
+<!--
+						<div class="form-group">
 							<div class="col-sm-12">
 								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属公司：</label>
-								<div class="col-sm-8">
-	                               <select class="form-control" name="userRoleId" id="userRoleIds" data-rule-required="true"  data-live-search="true">
-	                                   <option value="">请选择...</option>
-		                       			<c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+								<div class="col-sm-4">
+									<select class="form-control" name="userRoleId" id="userRoleIds" data-rule-required="true"  data-live-search="true">
+										<option value="">请选择公司...</option>
+										<c:forEach var="userRole" items="${userRoleList}" begin="0">
+											<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
 										</c:forEach>
-	                               </select>
-	                               
+									</select>
 								</div>
-			                </div>			                
-			            </div>
+								<div class="col-sm-4">
+									<select class="form-control" name="userRoleId" id="userRoleId" data-rule-required="true"  data-live-search="true">
+										<option value="">请选择班组...</option>
+										<c:forEach var="userRole" items="${userRoleList}" begin="0">
+											<option value="${userRole.id}" hassubinfo="true">${userRole.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+						</div>
+-->
+						<div class="form-group"><div class="col-sm-12">
+							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>资料上传：</label>
+							<div class="col-sm-8">
+								<input type="file" class="form-control" name="attachment" id="attachment" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
 
-						<div class="form-group mm1"><div class="col-sm-12">
-							<label class="col-sm-3 control-label">班长：</label>
-		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="password" id="passwords">
-		                        <label id="password-error" class="field_error"></label>
-		                    </div></div>
-		                </div>
+							</div></div>
+						</div>
 
-					    <div class="form-group">
-							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>手机号：</label>
-			                    <div class="col-sm-8">
-			                        <input type="text" class="form-control" name="phoneCode" id="phoneCodes">
-			                        
-			                    </div>
-		                    </div>
-		                </div>
 
-		            </div>
-                </div>
-                <div class="modal-footer">
-	                 <button type="reset" class="btn btn-outline btn-default" data-dismiss="modal"><i class="fa fa-remove"></i>&nbsp;取消</button>
-                     <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;确定</button>
-                </div>
-        	</form>
-    	</div>
-    </div>
+
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="reset" class="btn btn-outline btn-default" data-dismiss="modal"><i class="fa fa-remove"></i>&nbsp;取消</button>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;确定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+	<!-- 签到人员列表 -->
+	<div class="modal inmodal" id="worker_staff" role="dialog" aria-hidden="true" data-backdrop="static" style="display: none;">
+		<div class="modal-dialog">
+			<table id="qiandao"></table>
+		</div>
+	</div>
+
+
+
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/tool/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.include.js?V=1.3"></script>
      <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js?v=1.3"></script>   
@@ -231,15 +319,17 @@
     			showExport:false,
     			data: {staffName: $("#searchForm #staffName").val(),userRoleId: $("#searchForm #userRoleId1").val()},
     			columns : [ 
-    			    {field : "id",title : "班组标识",width : "0%",visible:false},
-    			    {field : "creatTime",title : "加入时间",width : "0%",visible:false},
-    			    {field : "teamName",title: '班组名',width : "10%",align: 'center',valign: 'middle'},
-    			    {field : "teamManager",title: '班长',width : "10%",align: 'center',valign: 'middle'},
-    			    {field : "mobile",title: '手机',width : "10%",align: 'center',valign: 'middle'}, 
-
+    			    {field : "id",title : "标识",width : "0%",visible:false},
+    			    {field : "studyDate",title : "培训日期",width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "studyType",title: '教育类型',width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "title",title: '培训主题',width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "teacher",title: '培训人',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "students",title: '培训人数',width : "10%",align: 'center',valign: 'middle'},
+                    {field : "studylong",title: '时长',width : "10%",align: 'center',valign: 'middle'},
     			    {field : "operate",title : "操作",width : "15%",align: 'center',valign: 'middle',
     			    	formatter:function(value,row,index){
-    						return   "<a href='javascript:void(0);' class='edit_party'>编辑</a>&nbsp;"  			    		
+    						return   "<a href='javascript:void(0);' class='edit_party'>编辑</a>&nbsp;"
+                            		+"<a href='javascript:void(0);' class='worker_staff'>签到人员</a>&nbsp;"
     								+"<a href='javascript:void(0);' class='remove_party'>&nbsp;删除</a>";					    		
     				    },
     				    events:{
@@ -259,17 +349,17 @@
     			   			},
     				    	'click .remove_party': function (e, value, row, index) {
     				    		fairAlert.confirm({
-    				    			msg:'您确定要删除该班组吗？删除后不可恢复！',
+    				    			msg:'您确定要删除该培训吗？删除后不可恢复！',
     				    			confirmCallback:function(){
     									ajaxPostJson({
     										url:"<%=request.getContextPath()%>/removeUser.shtml",
     										data:{id:row.id},
     										success:function(result){   										   
     								    	    if(result == "success") {
-    								    			fairAlert.success({"msg":"已成功删除班组"});
+    								    			fairAlert.success({"msg":"已成功删除培训"});
     								    			installGrid();
     								    	    }else{
-    												fairAlert.error({"msg":"删除班组失败"});
+    												fairAlert.error({"msg":"删除培训失败"});
     								    	    }
     								    	}
     									});
@@ -298,7 +388,7 @@
                 }
             }
     	}; 
-    	var message = {userName: { remote:e+"班组已经存在"}};
+    	var message = {userName: { remote:e+"培训已经存在"}};
     	// 添加员工表单提交
     	$("#addTeamForm").validate({
              rules: rules, 
@@ -316,9 +406,9 @@
            				},
            				success: function(result){
            			    	if(result == "success") {
-           			    		fairAlert.success({"msg":"已成功添加班组"});
+           			    		fairAlert.success({"msg":"已成功添加培训"});
            			    	}else{
-           			    		fairAlert.error({"msg":"添加班组失败"});
+           			    		fairAlert.error({"msg":"添加培训失败"});
            			    	}
            			    	installGrid();
            			    	$('#add_team').modal('hide');
@@ -407,9 +497,9 @@
     					},
     					success: function(result){
     						if(result == "success") {
-           			    		fairAlert.success({"msg":"已成功修改班组"});
+           			    		fairAlert.success({"msg":"已成功修改培训"});
            			    	}else{
-           			    		fairAlert.error({"msg":"修改班组失败"});
+           			    		fairAlert.error({"msg":"修改培训失败"});
            			    	}
     						installGrid();
     						$('#edit_staff').modal('hide');

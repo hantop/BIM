@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -54,11 +54,8 @@
 		            		    <div class="col-sm-6">
 	                               <label class="col-sm-4 control-label">所属班组</label>
 	                               <div class="col-sm-8">
-	                                  <select class="chosen-select" id="userRoleId1" name="userRoleId">
+	                                  <select class="chosen-select" id="ofteam" name="ofteam">
 										  <option value ="">请选择...</option>
-										  <c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	  <option value="${userRole.id}" hassubinfo="true">${userRole.roleName}</option>
-										  </c:forEach>
 									  </select>
 	                               </div>
 		            		    </div>
@@ -112,56 +109,125 @@
        	    <form id="addStaffForm" class="modal-content animated fadeIn" novalidate="novalidate"> 
            	   <div class="modal-header">
                     <button type="reset" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title text-left">新增用户</h4>
+				   <h4 class="modal-title text-left">新增劳务人员</h4>
                   </div>
                 <div class="modal-body">
 					<div class="form-horizontal ">
-					      <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>员工名：</label>
-		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="userName" id="userName" data-rule-required="true"  data-rule-rangelength="[4,12]">
-		                    </div></div>
-		                </div>
-		                <div class="form-group">
-							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属角色：</label>
-								<div class="col-sm-8">
-								  <select class="form-control" name="userRoleId" id="userRoleId" data-rule-required="true"  data-live-search="true">
-	                                   <option value="">请选择...</option>
-		                       			<c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.roleName}</option>
-										</c:forEach>
-	                               </select>
-								</div>
-			                </div>
-			            </div>
-					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>密码：</label>
-		                    <div class="col-sm-8">
-		                        <input type="password" class="form-control" name="password" id="password" data-rule-required="true" data-rule-rangelength="[6,12]">
-		                    </div></div>
-		                </div>
 						<div class="form-group">
 							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field" >*</span>确认密码：</label>
-			                    <div class="col-sm-8">
-			                        <input type="password" class="form-control" name="addPwdConfirm" id="addPwdConfirm" data-rule-required="true" data-rule-equalTo="#addStaffForm #password" data-msg-equalTo="<i class='fa fa-times-circle'></i> 两次输入的密码不一致">
-			                    </div>
-		                    </div>
-		                </div>
-					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>手机号：</label>
+								<label class="col-sm-3 control-label" for="realName"><span
+										class="form-valid-field">*</span>员工名：</label>
 		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="phoneCode" id="phoneCode" data-rule-required="true" data-rule-isMobile="true" maxlength=11 >
-		                        
+								<input type="hidden" class="form-control" name="id" id="workerId"/>
+								<input type="text" class="form-control" name="realName" id="realName"
+									   data-rule-required="true" data-rule-rangelength="[2,12]"
+									   data-msg-rangelength="请输入正确的用户名">
 		                    </div></div>
-		                </div>
-					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field"  >*</span>邮箱：</label>
-		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="emailCode" id="emailCode" data-rule-required="true" data-rule-email="true">
-		                    </div></div>
-		                </div>		              
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="sex"><span class="form-valid-field">*</span>性别：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="sex" id="sex" data-rule-required="true"
+											data-live-search="true">
+										<option value="">请选择...</option>
+										<option value="0">男</option>
+										<option value="1">女</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="age"><span class="form-valid-field">*</span>年龄：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="age" id="age"
+										   data-rule-required="true" data-rule-rangelength="[0,3]"
+										   data-msg-rangelength="请输入正确的年龄">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="nation"><span
+										class="form-valid-field">*</span>民族：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="nation" id="nation" data-rule-required="true"
+											data-live-search="true">
+										<option value="">请选择...</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="idCard"><span
+										class="form-valid-field">*</span>身份证：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="idCard" id="idCard"
+										   data-rule-required="true" data-rule-rangelength="[18,18]"
+										   data-msg-rangelength="请输入正确的身份证">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label"><span
+										class="form-valid-field">*</span>合同状态：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="contractStatus" id="contractStatus"
+											data-rule-required="true" data-live-search="true">
+										<option value="">请选择...</option>
+										<option value="0">未签合同</option>
+										<option value="1">已签合同</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="type"><span class="form-valid-field">*</span>身份：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="type" id="type"
+										   data-rule-required="true" data-rule-rangelength="[0,3]"
+										   data-msg-rangelength="请输入正确的身份">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="station"><span
+										class="form-valid-field">*</span>岗位：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="station" id="station"
+										   data-rule-required="true" data-rule-rangelength="[0,10]"
+										   data-msg-rangelength="请选择正确的岗位">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="department"><span
+										class="form-valid-field">*</span>部门：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="department" id="department"
+										   data-rule-required="true" data-rule-rangelength="[0,10]"
+										   data-msg-rangelength="请输入正确的部门">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="team"><span
+										class="form-valid-field">*</span>所属班组：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="teamId" id="team"
+											data-rule-required="true" data-live-search="true">
+										<option value="">请选择...</option>
+									</select>
+								</div>
+							</div>
+						</div>
 		            </div>
                 </div>
                 <div class="modal-footer">
@@ -181,68 +247,121 @@
                   </div>
                 <div class="modal-body">
 					<div class="form-horizontal ">
-					     <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>员工名：</label>
-		                    <div class="col-sm-8">
-		                        <input type="hidden" class="form-control" name="partyId" id="partyId">		                        
-		                        <input type="text" class="form-control" name="userName" id="userNames" readonly>
-		                    </div></div>
-		                </div>
-					    <div class="form-group">
+						<div class="form-group">
 							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>所属角色：</label>
+								<label class="col-sm-3 control-label" for="realNameU"><span
+										class="form-valid-field">*</span>员工名：</label>
 								<div class="col-sm-8">
-	                               <select class="form-control" name="userRoleId" id="userRoleIds" data-rule-required="true"  data-live-search="true">
-	                                   <option value="">请选择...</option>
-		                       			<c:forEach var="userRole" items="${userRoleList}" begin="0">
-					                    	<option value="${userRole.id}" hassubinfo="true">${userRole.roleName}</option>
-										</c:forEach>
-	                               </select>
-	                               
+									<input type="hidden" class="form-control" name="id" id="workerIdU"/>
+									<input type="text" class="form-control" name="realName" id="realNameU"
+										   data-rule-required="true" data-rule-rangelength="[2,12]"
+										   data-msg-rangelength="请输入正确的用户名">
+								</div></div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="sexU"><span class="form-valid-field">*</span>性别：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="sex" id="sexU" data-rule-required="true"
+											data-live-search="true">
+										<option value="">请选择...</option>
+										<option value="0">男</option>
+										<option value="1">女</option>
+									</select>
 								</div>
-			                </div>			                
-			            </div>
-					    <div class="form-group">
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-sm-12">
-								<label class="col-sm-3 control-label">是否修改密码：</label>
-			                    <div class="col-sm-8">
-			                    	<input type="hidden" class="form-control" name="isUpdatePwd" id="isUpdatePwd">
-			                        <div class="checkbox i-checks" id="checkPassword">
-                                        <label><input type="checkbox" ><i></i></label>
-                                    </div>
-			                    </div>
-		                    </div>
-		                </div>
-						<div class="form-group mm1"><div class="col-sm-12">
-							<label class="col-sm-3 control-label">密码：</label>
-		                    <div class="col-sm-8">
-		                        <input type="password" class="form-control" name="password" id="passwords">
-		                        <label id="password-error" class="field_error"></label>
-		                    </div></div>
-		                </div>
-						<div class="form-group mm2"><div class="col-sm-12">
-							<label class="col-sm-3 control-label">确认密码：</label>
-		                    <div class="col-sm-8">
-		                        <input type="password" class="form-control" name="password_two" id="password_two">
-		                        <label id="password_two-error" class="field_error"></label>
-		                    </div></div>
-		                </div>
-					    <div class="form-group">
+								<label class="col-sm-3 control-label" for="ageU"><span class="form-valid-field">*</span>年龄：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="age" id="ageU"
+										   data-rule-required="true" data-rule-rangelength="[0,3]"
+										   data-msg-rangelength="请输入正确的年龄">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-sm-12">
-								<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>手机号：</label>
-			                    <div class="col-sm-8">
-			                        <input type="text" class="form-control" name="phoneCode" id="phoneCodes">
-			                        
-			                    </div>
-		                    </div>
-		                </div>
-					    <div class="form-group"><div class="col-sm-12">
-							<label class="col-sm-3 control-label"><span class="form-valid-field">*</span>邮箱：</label>
-		                    <div class="col-sm-8">
-		                        <input type="text" class="form-control" name="emailCode" id="emailCodes">
-		                        
-		                    </div></div>
-		                </div>
+								<label class="col-sm-3 control-label" for="nationU"><span
+										class="form-valid-field">*</span>民族：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="nation" id="nationU" data-rule-required="true"
+											data-live-search="true">
+										<option value="">请选择...</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="idCardU"><span
+										class="form-valid-field">*</span>身份证：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="idCard" id="idCardU"
+										   data-rule-required="true" data-rule-rangelength="[18,18]"
+										   data-msg-rangelength="请输入正确的身份证">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label"><span
+										class="form-valid-field">*</span>合同状态：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="contractStatus" id="contractStatusU"
+											data-rule-required="true" data-live-search="true">
+										<option value="">请选择...</option>
+										<option value="0">未签合同</option>
+										<option value="1">已签合同</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="typeU"><span class="form-valid-field">*</span>身份：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="type" id="typeU"
+										   data-rule-required="true" data-rule-rangelength="[0,3]"
+										   data-msg-rangelength="请输入正确的身份">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="stationU"><span
+										class="form-valid-field">*</span>岗位：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="station" id="stationU"
+										   data-rule-required="true" data-rule-rangelength="[0,10]"
+										   data-msg-rangelength="请选择正确的岗位">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="departmentU"><span
+										class="form-valid-field">*</span>部门：</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="department" id="departmentU"
+										   data-rule-required="true" data-rule-rangelength="[0,10]"
+										   data-msg-rangelength="请输入正确的部门">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-3 control-label" for="teamU"><span
+										class="form-valid-field">*</span>所属班组：</label>
+								<div class="col-sm-8">
+									<select class="form-control" name="teamId" id="teamU"
+											data-rule-required="true" data-live-search="true">
+										<option value="">请选择...</option>
+									</select>
+								</div>
+							</div>
+						</div>
 		            </div>
                 </div>
                 <div class="modal-footer">
@@ -257,16 +376,24 @@
      <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js?v=1.3"></script>   
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/plugins/jsTree/jstree.min.js?V=1.3"></script>
     <script type="text/javascript">
-    $(document).ready(function() { 
+        var national = [
+            "汉族", "壮族", "满族", "回族", "苗族", "维吾尔族", "土家族", "彝族", "蒙古族", "藏族", "布依族", "侗族", "瑶族", "朝鲜族", "白族", "哈尼族",
+            "哈萨克族", "黎族", "傣族", "畲族", "傈僳族", "仡佬族", "东乡族", "高山族", "拉祜族", "水族", "佤族", "纳西族", "羌族", "土族", "仫佬族", "锡伯族",
+            "柯尔克孜族", "达斡尔族", "景颇族", "毛南族", "撒拉族", "布朗族", "塔吉克族", "阿昌族", "普米族", "鄂温克族", "怒族", "京族", "基诺族", "德昂族", "保安族",
+            "俄罗斯族", "裕固族", "乌孜别克族", "门巴族", "鄂伦春族", "独龙族", "塔塔尔族", "赫哲族", "珞巴族"
+        ];
+        $(document).ready(function () {
+
     	// 装载列表
     	function installGrid(){
     		$("#datatable").jqGrid({
     			url : "<%=request.getContextPath()%>/getWorkerList.shtml", // 请求地址
     			showExport:false,
-    			data: {staffName: $("#searchForm #staffName").val(),userRoleId: $("#searchForm #userRoleId1").val()},
+    			data: {staffName: $("#searchForm #staffName").val(),userRoleId: $("#searchForm #ofteam").val()},
     			columns : [ 
-    			    {field : "id",title : "用户标识",width : "0%",visible:false}, 
-    			    {field : "realName",title : "姓名",width : "10%",align: 'center',valign: 'middle'},
+    			    {field : "id",title : "用户标识",width : "0%",visible:false},
+                    {field : "teamId",title : "所属班组",width : "0%",visible:false},
+                    {field : "realName",title : "姓名",width : "10%",align: 'center',valign: 'middle'},
     			    {field : "sex",title: '性别',width : "10%",align: 'center',valign: 'middle'},
     			    {field : "age",title: '年龄',width : "5%",align: 'center',valign: 'middle'},
     			    {field : "nation",title: '民族',width : "5%",align: 'center',valign: 'middle'},
@@ -282,19 +409,19 @@
     						return   "<a href='javascript:void(0);' class='edit_party'>编辑</a>&nbsp;"  			    		
     								+"<a href='javascript:void(0);' class='remove_party'>&nbsp;删除</a>";					    		
     				    },
-    				    events:{
+                        events: {
     				    	'click .edit_party': function (e, value, row, index) {
-    				    		$('.mm1').hide();
-    				    		$('.mm2').hide();
-    				    		$("#editStaffForm #userRoleIds").val(row.userRoleId);
-    					    	$("#editStaffForm #userRoleIds").trigger('chosen:updated');
-    				    	    
-    				    		$("#editStaffForm #isUpdatePwd").val(false);
-    				    		$("#editStaffForm #partyId").val(row.id);   				    	   
-    				    	    $("#editStaffForm #userNames").val(row.staffName);
-    				    	    $("#editStaffForm #emailCodes").val(row.email);
-    				    	    $("#editStaffForm #phoneCodes").val(row.mobile);
-    				    	    
+    				    	    $("#realNameU").val(row.realName);
+                                $("#sexU").val(row.sex);
+                                $("#ageU").val(row.age);
+                                $("#nationU").val(row.nation);
+                                $("#idCardU").val(row.idCard);
+                                $("#contractStatusU").val(row.contractStatus);
+                                $("#typeU").val(row.type);
+                                $("#stationU").val(row.station);
+                                $("#departmentU").val(row.department);
+                                $("#teamU").val(row.teamId);
+                                $("#workerIdU").val(row.id);
     				    	    $('#edit_staff').modal();
     			   			},
     				    	'click .remove_party': function (e, value, row, index) {
@@ -302,10 +429,10 @@
     				    			msg:'您确定要删除该用户吗？删除后不可恢复！',
     				    			confirmCallback:function(){
     									ajaxPostJson({
-    										url:"<%=request.getContextPath()%>/removeUser.shtml",
+    										url:"<%=request.getContextPath()%>/worker/removeWorker.shtml",
     										data:{id:row.id},
     										success:function(result){   										   
-    								    	    if(result == "success") {
+    								    	    if(result.status == 200) {
     								    			fairAlert.success({"msg":"已成功删除用户"});
     								    			installGrid();
     								    	    }else{
@@ -317,10 +444,12 @@
     				    		})
     			   			},
     			   		}
-    			    }, 
-    			]
+                    },
+                ],
     		});
     	}
+        readyChangePeople(1);changTeam(1);
+    	readyChangePeople(2);changTeam(2);
     	installGrid();
     	// 查询事件
     	$("#query_button").click(installGrid);
@@ -339,23 +468,19 @@
             }
     	}; 
     	var message = {userName: { remote:e+"员工名已经存在"}};
-    	// 添加员工表单提交
+            // 添加劳务人员表单提交
     	$("#addStaffForm").validate({   		
              rules: rules, 
             messages: message,           
             submitHandler:function(form){
             		$(form).ajaxSubmit({
-            			url : "<%=request.getContextPath()%>/addAndUpdateUser.shtml", 
+                        url: "<%=request.getContextPath()%>/worker/addWorker.shtml",
            			    dataType: "json",
            			    type: 'POST',
            			 	clearForm:true,
            				resetForm: true,
-           				beforeSubmit:function(formData, jqForm, options){          					
-           					formData[2].value = $.md5($("#addStaffForm #password").val())
-           					console.log(formData);
-           				},
            				success: function(result){
-           			    	if(result == "success") {
+           			    	if(result.msg == "OK") {
            			    		fairAlert.success({"msg":"已成功添加用户"});
            			    	}else{
            			    		fairAlert.error({"msg":"添加用户失败"});
@@ -365,84 +490,21 @@
            			    	resetForm("addStaffForm");
            				}
             		});
-               window.location.href="<%=request.getContextPath()%>/staffIndex.shtml";
+                window.location.href = "<%=request.getContextPath()%>/worker.shtml";
             }    
         });
-    	$("#editStaffForm #checkPassword").on('ifClicked',function(){
-    		if($(this).find('div').hasClass('checked')){
-    			$("#editStaffForm #isUpdatePwd").val(false);
-    			$('.mm1').hide();
-	    		$('.mm2').hide();
-    		}else{
-    			$("#editStaffForm #isUpdatePwd").val(true);
-    			$('.mm1').show();
-	    		$('.mm2').show();
-    		}
-    	});
-    	/**
-    	 * 检查是否修改面
-    	 */
-    	function validateUpdatePassword(){
-    		if($("#editStaffForm #isUpdatePwd").val() == true || $("#editStaffForm #isUpdatePwd").val() == "true"){
-    			var pas = $("#editStaffForm #passwords").val();
-    			var past = $("#editStaffForm #password_two").val();
-    			if(pas == undefined || pas.length == 0){
-    				$("#editStaffForm #password-error").html('<i class="fa fa-times-circle"></i> 必填');
-    				$("#editStaffForm #password-error").css("display","block");
-    				return false;
-    			}else if(pas.length > 12 || pas.length < 6 ){
-    				$("#editStaffForm #password-error").html('<i class="fa fa-times-circle"></i> 请输入长度为 6 至 12 之间的字符串');
-    				$("#editStaffForm #password-error").css("display","block");
-    				return false;
-    			}else{
-    				$("#editStaffForm #password-error").html('');
-    				$("#editStaffForm #password-error").css("display","none");
-    				if(past == undefined || past.length == 0){
-    					$("#editStaffForm #password_two-error").html('<i class="fa fa-times-circle"></i> 必填');
-    					$("#editStaffForm #password_two-error").css("display","block");
-    					return false;
-    				}else{
-    					if(pas != past ){
-    						$("#editStaffForm #password_two-error").html('<i class="fa fa-times-circle"></i> 两次输入的值不一致');
-    						$("#editStaffForm #password_two-error").css("display","block");
-    						return false;
-    					}else{
-    						$("#editStaffForm #password_two-error").html('');
-    						$("#editStaffForm #password_two-error").css("display","none");
-    						return true;
-    					}
-    				}
-    			}
-    		}else{
-    			$("#editStaffForm #password-error").html('');
-    			$("#editStaffForm #password-error").css("display","none");
-    			$("#editStaffForm #password_two-error").html('');
-    			$("#editStaffForm #password_two-error").css("display","none");
-    			return true;
-    		}
-    	}
-    	$("#editStaffForm #passwords").blur(function(){
-    		validateUpdatePassword();
-    	});
-    	$("#editStaffForm #password_two").blur(function(){
-    		validateUpdatePassword();
-    	});
     	// 编辑员工表单提交
     	$("#editStaffForm").validate({
     	    rules: rules, 
     		messages: message,
     		submitHandler:function(form){
-    			if(validateUpdatePassword()){
     				$(form).ajaxSubmit({
-    					url : "<%=request.getContextPath()%>/addAndUpdateUser.shtml", 
+    					url : "<%=request.getContextPath()%>/worker/updateWorker.shtml",
     					dataType: "json",
     					type:"POST",
     					clearForm:true,
     					resetForm: true,
-    					beforeSubmit:function(formData, jqForm, options){ 
-    						if($("#editStaffForm #passwords").val()!=undefined && $("#editStaffForm #passwords").val().length != 0){
-    							formData[4].value = $.md5($("#editStaffForm #passwords").val())
-    						}
+    					beforeSubmit:function(formData, jqForm, options){
     						console.log(formData);
     					},
     					success: function(result){
@@ -456,10 +518,53 @@
     						resetForm("editStaffForm");
     					}
     				});
-    			}
+                window.location.href = "<%=request.getContextPath()%>/worker.shtml";
     		}    
     	});
+
     });
-    </script> 
+        //动态的实现班组的选择
+        function changTeam(type){
+            var team;
+			switch (type) {
+                case 1:
+                    team = document.getElementById("team");
+                    break;
+                case 2:
+                    team = document.getElementById("teamU");
+                    break;
+            }
+            var url="/workteam/getAllWorkrTeam.shtml";
+            $.post(url,function(result){
+                for(var i=0;i<result.data.length;i++){
+                    var option = document.createElement('option');
+                    option.value = result.data[i].id;
+                    option.innerHTML = result.data[i].teamName;
+                    team.appendChild(option);
+                }
+            });
+        }
+
+
+
+        //新增劳务人员时。民族属性选择下拉框生成
+        function readyChangePeople(type) {
+            var people;
+            switch (type) {
+                case 1:
+                    people = document.getElementById("nation");
+                    break;
+                case 2:
+                    people = document.getElementById("nationU");
+                    break;
+            }
+            for (var i = 0; i < national.length; i++) {
+                var option = document.createElement('option');
+                option.value = national[i];
+                option.innerHTML = national[i];
+                people.appendChild(option);
+            }
+        }
+	</script>
 </body>
 </html>

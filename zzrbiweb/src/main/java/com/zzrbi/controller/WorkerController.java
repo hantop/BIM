@@ -29,11 +29,12 @@ import java.util.Map;
  */
 @Controller(value="workerController")
 public class WorkerController extends BaseController {
-	
+
 	private static Logger logger = Logger.getLogger(WorkerController.class);
 	@Resource
 	private IWorkTeamService workTeamService;
 	@Resource
+
 	private IWorkerService workerService;
 
 	@RequestMapping("/workTeam")

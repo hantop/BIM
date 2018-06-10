@@ -23,11 +23,11 @@ public class ReturnMapUtil {
 	private static Locale locale = Locale.SIMPLIFIED_CHINESE;
 	
 	private static Logger logger = Logger.getLogger(module);
-	
-	/**
-	 * 获取成功Map
-	 * @param code code
-	 * @return
+
+    /**
+     * 获取成功Map
+     * @param code code
+     * @return
 	 */
 	public static Map<String,Object> getSuccessMap(){
 		return returnMessage(null,null,success_type,locale);

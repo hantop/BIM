@@ -60,21 +60,26 @@ public class LoginController extends BaseController{
 //			if(!UtilValidate.areEqual(verCode.toLowerCase(), loginCode.toLowerCase())){
 //				returnMap = ReturnMapUtil.getErrorMap("1", "验证码错误");
 //			}else{
-				Staff userLogin = staffService.getUserLogin(userName);
-
-				if(UtilValidate.isEmpty(userLogin)){
-					returnMap = ReturnMapUtil.getErrorMap("3", "用户名错误");
-				}else{
-					String currentPassword = StringUtils.objectToString(userLogin.getPasswd());
-					if(!UtilValidate.areEqual(currentPassword,MD5.encodeByMd5AndSaltWithJs(password))){
-						returnMap = ReturnMapUtil.getErrorMap("2", "用户名或密码错误");
-					} /*else if (!isValid(verCode, userLogin.getSecurityCode())) {
-						returnMap = ReturnMapUtil.getErrorMap("4", "令牌错误");
+            //去service中执行，根据用户名去查找
+            Staff userLogin = staffService.getUserLogin(userName);
+            //如果返回的执行结果是空，说明用户名没有
+            if (UtilValidate.isEmpty(userLogin)) {
+                //获取失败的返回集合
+                returnMap = ReturnMapUtil.getErrorMap("3", "用户名错误");
+            } else {
+                //如果用户名没错，将密码转字符串
+                String currentPassword = StringUtils.objectToString(userLogin.getPasswd());
+                //如果获取到和密码和请求的密码不一致的化。就返回异常
+                if (!UtilValidate.areEqual(currentPassword, MD5.encodeByMd5AndSaltWithJs(password))) {
+                    returnMap = ReturnMapUtil.getErrorMap("2", "用户名或密码错误");
+                } /*else if (!isValid(verCode, userLogin.getSecurityCode())) {
+                        returnMap = ReturnMapUtil.getErrorMap("4", "令牌错误");
 					}*/ else{
-						request.getSession().setAttribute("partyId", userLogin.getId());
-						request.getSession().setAttribute("userName", userName);
-					}
-				}
+                    //将partyID和userName放到request请求与中
+                    request.getSession().setAttribute("partyId", userLogin.getId());
+                    request.getSession().setAttribute("userName", userName);
+                }
+            }
 		//	}
 		}catch(Exception e){
 			logger.error(e.getMessage(),e);
@@ -90,10 +95,11 @@ public class LoginController extends BaseController{
 		boolean isValidate = true;
 		try{
 			Staff user = staffService.getUserLogin(userName);
-			if(UtilValidate.isNotEmpty(user)){
-				isValidate = false;
-			}
-		}catch(Exception e){
+            //如果查出来不为空，就说明已经存在，false
+            if (UtilValidate.isNotEmpty(user)) {
+                isValidate = false;
+            }
+        }catch(Exception e){
 			logger.error(e.getMessage(),e);
 			isValidate = false;
 		}
