@@ -80,4 +80,23 @@ public class CultivateController extends BaseController {
 		}
 	}
 
+	/**
+	 *  @Description 黑名单列表页
+	 *  @Author lihui
+	 *  @Date 2018/6/9 18:29
+	 * @param
+	 * @Return
+	 */
+	@RequestMapping("/blackRecord")
+	public ModelAndView blackRecord(final HttpServletRequest request, final HttpServletResponse response) {
+		if (isLogin(request, response)) {
+			logger.info("----->>>>>黑名单列表页记录");
+
+			return new ModelAndView("worker/blackRecord");
+		} else {
+			logger.info("用户未登录,跳转到登录页");
+			return new ModelAndView("login");
+		}
+	}
+
 }
